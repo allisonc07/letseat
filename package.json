@@ -4,14 +4,22 @@
   "description": "Helps you choose a restaurant",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "build": "webpack -d --watch",
+    "start": "nodemon server/listen.js"
   },
   "author": "Allison Chen",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "faker": "^4.1.0",
+    "moment": "^2.22.2",
     "mongoose": "^5.2.9",
-    "nodemon": "^1.18.3"
+    "nodemon": "^1.18.3",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
