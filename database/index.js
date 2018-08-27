@@ -1,9 +1,10 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+
 mongoose.connect('mongodb://localhost/mealpicker', {
-  useNewUrlParser: true
+  useNewUrlParser: true,
 });
 
-var db = mongoose.connection;
+const db = mongoose.connection;
 
 db.on('error', () => {
   console.log('mongoose connection error');
@@ -15,7 +16,6 @@ db.once('open', () => {
 const restaurantSchema = new mongoose.Schema({
   name: String,
   visitDates: [Date],
-  visitsThisWeek: Number,
   isFavorite: Boolean,
 });
 
@@ -28,7 +28,7 @@ const getAllRestuarants = (callback) => {
     } else {
       callback(null, results);
     }
-  })
+  });
 };
 
 const addRestaurant = (details, callback) => {
@@ -36,22 +36,25 @@ const addRestaurant = (details, callback) => {
   restaurantToAdd.save((err) => {
     if (err) {
       throw err;
+    } else {
+      callback(null)
     }
   });
-}
+};
 
-const updateRestaurant = ([details], callback) => {
-  Restaurant.update({ name: details.name }, { $push { visitDates: details.date } }, (err, response) => {
+const updateRestaurant = (details, callback) => {
+  Restaurant.update({ name: details[0] }, { $push: { visitDates: details[1] } }, (err, response) => {
     if (err) {
       throw err;
     } else {
-      callback(null, reponse);
+      callback(null, response);
     }
-  })
-}
+  });
+};
 
 module.exports = {
+  Restaurant,
   getAllRestuarants,
   addRestaurant,
-  updateRestaurant
-}
+  updateRestaurant,
+};
