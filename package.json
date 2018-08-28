@@ -19,7 +19,8 @@
     "mongoose": "^5.2.9",
     "nodemon": "^1.18.3",
     "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "react-dom": "^16.4.2",
+    "yelp-fusion": "^2.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
