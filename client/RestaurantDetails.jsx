@@ -13,7 +13,7 @@ const RestaurantDetails = (props) => {
           <div className="detailsText">
             <div>
               <div className="header">
-                Ratings
+                Rating
               </div>
               <div className="details">
                 {details.data.rating}

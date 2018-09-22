@@ -23,9 +23,9 @@ class RestaurantAdder extends React.Component {
     const { name, date } = this.state;
     return (
       <form onSubmit={(e) => { addVisit(e, name, date) }}>
-        <input name="name" type="text" onChange={this.handleInputChange} />
-        <input name="date" type="date" onChange={this.handleInputChange} />
-        <button type="submit" className="submit">Submit</button>
+        <input name="name" type="text" placeholder="Restaurant" onChange={this.handleInputChange} />
+        <input name="date" type="date" placeholder="Date Visited" onChange={this.handleInputChange} />
+        <button type="submit" className="submit">Add</button>
       </form>
     );
   }

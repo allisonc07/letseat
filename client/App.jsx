@@ -2,6 +2,7 @@ import React from 'react';
 import RestaurantAdder from './RestaurantAdder';
 import RestaurantList from './RestaurantList';
 import RestaurantDetails from './RestaurantDetails';
+import Navbar from './Navbar';
 import './styles.css';
 
 const axios = require('axios');
@@ -160,30 +161,39 @@ class App extends React.Component {
     const { restaurants, chosenRestaurant, lat, long, details, openDetails, minimized } = this.state;
     return (
       <div>
-        <h2>
-          Hungry but suffering from analysis paralysis?
-        </h2>
-        <div className="buttons">
-          <button type="button" onClick={this.toggleMenu}>Settings</button>
-          <button type="button" onClick={this.chooseRestaurant}>Pick for me!</button>
+        <Navbar toggle={this.toggleMenu} />
+        <div class="header">
+          <div>
+            <h2>
+              Hungry but suffering from analysis paralysis?
+            </h2>
+          </div>
+          <div className="buttons">
+            <button type="button" onClick={this.chooseRestaurant}>Pick for me!</button>
+          </div>
         </div>
-        <div className="panelContainer">
-          <div className="leftPanel">
-            {!minimized && (
-              <div>
+        <div>
+          {!minimized && (
+            <div className="leftPanel">
+              <div className="wrapper">
                 <RestaurantAdder addVisit={this.addVisit} />
-                <RestaurantList restaurants={restaurants} clickRestaurant={this.clickRestaurant} />
-                <div>
-                  <input type="checkbox" name="favorites" className="checkbox" onChange={this.toggleFavoritesMode} />
-                  <label for="favorites">Favorites Only Mode</label>
-                </div>
-                <div>
-                  <input type="checkbox" name="newRestaurants" className="checkbox" onChange={this.toggleNewMode} />
-                  <label for="newRestaurants">Show Me Something New!</label>
+                <div className="settingsInner">
+                  <RestaurantList restaurants={restaurants} clickRestaurant={this.clickRestaurant} />
+                  <div>
+                    <input type="checkbox" name="favorites" className="checkbox" onChange={this.toggleFavoritesMode} />
+                    <label for="favorites">Favorites Only Mode</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" name="newRestaurants" className="checkbox" onChange={this.toggleNewMode} />
+                    <label for="newRestaurants">Show Me Something New!</label>
+                  </div>
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
+        </div>
+        <div className="panelContainer">
+
           <div className="rightPanel">
             <RestaurantDetails restaurant={chosenRestaurant} lat={lat} long={long} details={details} openDetails={openDetails} />
           </div>
